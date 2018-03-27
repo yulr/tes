@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel=stylesheet href="jquery.mobile-1.4.5.css"/>
+    <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script src="jquery.mobile-1.4.5.js"></script>
+    <script type="text/javascript">
+    function resize(){
+
+      var s= document.getElementById("sz").value;
+      document.getElementById("red").innerHTML=s;
+      document.getElementById("green").innerHTML=s;
+      document.getElementById("blue").innerHTML=s;
+    }
+      function calc(){
+        var x = document.getElementById("num").value;
+        var y = document.getElementById("pangkat").value;
+        var z = Math.pow(x,y);
+        document.getElementById("res1").innerHTML=z;
+      }
+        function fac(){
+        var a = document.getElementById("fact").value;
+        if (isNaN(a)) 
+  {
+    alert("Must input numbers");
+    return false;
+  }
+        var b = a;
+        for(x=a-1;x>0;x--){
+          b=b*x;
+        }
+        document.getElementById("res2").innerHTML=b;
+      }
+      function col() {
+        c=document.getElementById("red").value;
+        o=document.getElementById("green").value;
+        l=document.getElementById("blue").value;
+      document.getElementById("color").style.backgroundColor ="rgb("+c+","+o+","+l+")";
+
+    }
+
+    $( document ).on( "click", ".show-page-loading-msg", function() {
+    var $this = $( this ),
+        theme = $this.jqmData( "theme" ) || $.mobile.loader.prototype.options.theme,
+        msgText = $this.jqmData( "msgtext" ) || $.mobile.loader.prototype.options.text,
+        textVisible = $this.jqmData( "textvisible" ) || $.mobile.loader.prototype.options.textVisible,
+        textonly = !!$this.jqmData( "textonly" );
+        html = $this.jqmData( "html" ) || "";
+    $.mobile.loading( "show", {
+            text: msgText,
+            textVisible: textVisible,
+            theme: theme,
+            textonly: textonly,
+            html: html
+    });
+})
+.on( "click", ".hide-page-loading-msg", function() {
+    $.mobile.loading( "hide" );
+});
+    </script>
+    <style>
+      .rwd-example .ui-body {
+    text-align: left;
+    border-color: #ddd;
+}
+.rwd-example p {
+    color: #777;
+    line-height: 140%
+}
+/* Stack all blocks to start */
+.rwd-example .ui-block-a,
+.rwd-example .ui-block-b,
+.rwd-example .ui-block-c {
+    width: 100%;
+    float: none;
+}
+/* Collapsing borders */
+.rwd-example > div + div .ui-body {
+    border-top-width: 0;
+}
+/* 1st breakpoint - Float B and C, leave A full width on top */
+@media all and (min-width: 42em) {
+    .rwd-example {
+        overflow: hidden; /* Use this or a "clearfix" to give the container height */
+    }
+    .rwd-example .ui-body {
+       min-height: 14em;
+    }
+    .rwd-example .ui-block-b,
+    .rwd-example .ui-block-c {
+      float: left;
+      width: 49.95%;
+    }
+    .rwd-example .ui-block-b p,
+    .rwd-example .ui-block-c p {
+      font-size: .8em;
+    }
+    .rwd-example > div + div .ui-body {
+        border-top-width: 1px;
+    }
+    .rwd-example > div:first-child .ui-body {
+        border-bottom-width: 0;
+    }
+    .rwd-example > div:last-child .ui-body {
+        border-left-width: 0;
+    }
+}
+/* 2nd breakpoint - Float all, 50/25/25 */
+@media all and (min-width: 55em) {
+    .rwd-example .ui-body {
+       min-height: 18em;
+    }
+    .rwd-example .ui-block-a,
+    .rwd-example .ui-block-c {
+      float: left;
+      width: 49.95%;
+    }
+    .rwd-example .ui-block-b,
+    .rwd-example .ui-block-c {
+      float: left;
+      width: 24.925%;
+    }
+    .rwd-example > div:first-child .ui-body {
+        border-bottom-width: 1px;
+    }
+    .rwd-example > div + div .ui-body {
+        border-left-width: 0;
+    }
+}
+/* 3rd breakpoint - Bump up font size at very wide screens */
+@media all and (min-width: 75em) {
+    .rwd-example .ui-body {
+      font-size: 125%;
+    }
+    .rwd-example .ui-block-a,
+    .rwd-example .ui-block-c {
+      float: left;
+      width: 49.95%;
+    }
+    .rwd-example .ui-block-b,
+    .rwd-example .ui-block-c {
+      float: left;
+      width: 24.925%;
+    }
+}
+    </style>
+  </head>
+
+  <body>
+    <div data-role=page id="one">
+  <!-- <div id="one" class="ui-body-d ui-content"> -->
+    <form>
+<div class="ui-field-contain">
+    <label for="select-native-17">Page:</label>
+    <select name="select-native-17" id="select-native-17" onchange="location = this.value;">
+        <option value="#one"  selected="selected" data-ajax="false">Calculator</option>
+        <option value="#two" data-ajax="false">Color</option>
+        <option value="#three" data-ajax="false">Rangkuman</option>
+    </select>
+</div>
+</form>
+    <h2 align="center">CALCULATOR</h2>
+    <b>Masukkan angka: </b><input type = "number" name = "num" id = "num"/>
+    <b>Masukkan pangkat: </b><input type = "number" name = "pangkat" id = "pangkat"/>
+    <input type="button" value="calculate!" onclick="calc()"  class="show-page-loading-msg">
+    <h4>HASIL:</h4>
+    <div id="res1"></div>
+     <h4>Masukkan faktorial: </h4><input type = "number" name = "fact" id = "fact"/>
+      <input type="button" value="faktorial" onclick="fac()" class="hide-page-loading-msg">
+      <h4>HASIL:</h4>
+      <div id="res2"></div>
+
+  </div>
+  <div data-role=page id="two">
+     <form>
+<div class="ui-field-contain">
+    <label for="select-native-17">Page:</label>
+    <select name="select-native-17" id="select-native-17" onchange="location = this.value;">
+        <option value="#one" data-ajax="false">Calculator</option>
+        <option value="#two" selected="selected" data-ajax="false"> Color</option>
+        <option value="#three" data-ajax="false">Rangkuman</option>
+    </select>
+</div>
+</form>
+<h2 align="center">COLOR</h2>
+   <form>
+    <label for="slider-1">Slider:</label>
+    <input type="range" name="slider-1" id="sz" min="0" max="100" value="0" onclick="resize()">
+</form>
+      <h4>R:</h4><input id="red" type=text value="0">
+   
+      <h4>G:</h4><input id="green" type=text value="0"s>
+      <h4>B:</h4><input id="blue" type=text value="0" >
+      <input type="button" value="Show Color!" onclick="col()"/>
+      <textarea id="color" rows="4" cols="100"></textarea>
+  </div>
+
+<div data-role=page id="three">
+   <form>
+<div class="ui-field-contain">
+    <label for="select-native-17">Page:</label>
+    <select name="select-native-17" id="select-native-17" onchange="location = this.value;">
+        <option value="#one" data-ajax="false">Calculator</option>
+        <option value="#two" data-ajax="false">Color</option>
+        <option value="#three"  selected="selected" data-ajax="false">Rangkuman</option>
+    </select>
+</div>
+</form>
+<h2 align="center">RANGKUMAN</h2>
+ <div class="rwd-example">
+    <!-- Lead story block -->
+    <div class="ui-block-a">
+        <div class="ui-body ui-body-d">
+            <h2>Materi yang sudah dipelajari</h2>
+            <p>mempelajari cara menggunakan Github dan jquery Mobile</p>
+        </div>
+    </div>
+    <!-- secondary story block #1 -->
+    <div class="ui-block-b">
+        <div class="ui-body ui-body-d">
+            <h4>Rangkuman github</h4>
+            <p>Ini rangkumannya</p>
+<a href="#popupBasic" data-rel="popup" class="ui-btn ui-corner-all ui-shadow ui-btn-inline" data-transition="pop">Rangkuman github</a>
+<div data-role="popup" id="popupBasic">
+<p>git init = memulai git // membuat repo
+git status = ngecek status / apa yang barusan terjadi / ditambahkan
+git add octocat.txt = memasukkan octocat ke git (track / stage)
+git commit -m "add cute octocat story" = menjalankan pesan yang diminta
+git log = melihat apa yang barusan di staged
+git remote add add origin ...... = menambah repository di server git
+git push -u origin master = mengkonek local repo ke github repo
+git pull origin master = melihat apa yang orang lain barusan masukkan ke repo
+git diff head = melihat perbedaan apa yang dilakukan orang lain di repo dari commit yang terakhir kita lakukkan
+git add octofamily/octodog.txt = memasukan octodog ke stage
+git reset = meng unstage 
+git check out -- octocat.txt = undo
+git branch clean_up = buat new branch
+git checkout clean_up = pindah branch
+git rm '*.txt' = remove smua file txt
+git commit -m "remove all the cats" = mengcommit apa yang kita minta sblm nya(commit terakhir)
+git checkout master= kembali ke master branch
+git merge clean_up = merge branch cleanup sm master
+git branch -d clean_up = delete branch cleanup
+git push = push ke repositor
+</p>
+</div>
+        </div>
+    </div>
+    <!-- secondary story block #2 -->
+    <div class="ui-block-c">
+        <div class="ui-body ui-body-d">
+            <h4>Rangkuman jquerymobile</h4>
+            <p>untuk membuat website yang responsive bisa menggunakan jquery mobile, banyak fungsi2 yang dapat dipakai dan untuk mencari cara nya bisa dicari di <a href="http://demos.jquerymobile.com" rel="external">sini</a> </p>
+        </div>
+    </div>
+</div><!-- /rwd-example -->
+<table data-role="table" id="table-custom-2" data-mode="columntoggle" class="ui-body-d ui-shadow table-stripe ui-responsive" data-column-btn-theme="b" data-column-btn-text="Columns to display..." data-column-popup-theme="a">
+    <thead>
+      <tr class="ui-bar-d">
+        <th data-priority="2">Rank</th>
+        <th>Movie Title</th>
+        <th data-priority="3">Year</th>
+        <th data-priority="1"><abbr title="Rotten Tomato Rating">Rating</abbr></th>
+        <th data-priority="5">Reviews</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th>1</th>
+        <td><a href="http://en.wikipedia.org/wiki/Citizen_Kane" data-rel="external">Citizen Kane</a></td>
+        <td>1941</td>
+        <td>100%</td>
+        <td>74</td>
+      </tr>
+      <tr>
+        <th>2</th>
+        <td><a href="http://en.wikipedia.org/wiki/Casablanca_(film)" data-rel="external">Casablanca</a></td>
+        <td>1942</td>
+        <td>97%</td>
+        <td>64</td>
+      </tr>
+      <tr>
+        <th>3</th>
+        <td><a href="http://en.wikipedia.org/wiki/The_Godfather" data-rel="external">The Godfather</a></td>
+        <td>1972</td>
+        <td>97%</td>
+        <td>87</td>
+      </tr>
+      <tr>
+        <th>4</th>
+        <td><a href="http://en.wikipedia.org/wiki/Gone_with_the_Wind_(film)" data-rel="external">Gone with the Wind</a></td>
+        <td>1939</td>
+        <td>96%</td>
+        <td>87</td>
+      </tr>
+      <tr>
+        <th>5</th>
+        <td><a href="http://en.wikipedia.org/wiki/Lawrence_of_Arabia_(film)" data-rel="external">Lawrence of Arabia</a></td>
+        <td>1962</td>
+        <td>94%</td>
+        <td>87</td>
+      </tr>
+      <tr>
+        <th>6</th>
+        <td><a href="http://en.wikipedia.org/wiki/Dr._Strangelove" data-rel="external">Dr. Strangelove Or How I Learned to Stop Worrying and Love the Bomb</a></td>
+        <td>1964</td>
+        <td>92%</td>
+        <td>74</td>
+      </tr>
+      <tr>
+        <th>7</th>
+        <td><a href="http://en.wikipedia.org/wiki/The_Graduate" data-rel="external">The Graduate</a></td>
+        <td>1967</td>
+        <td>91%</td>
+        <td>122</td>
+      </tr>
+      <tr>
+        <th>8</th>
+        <td><a href="http://en.wikipedia.org/wiki/The_Wizard_of_Oz_(1939_film)" data-rel="external">The Wizard of Oz</a></td>
+        <td>1939</td>
+        <td>90%</td>
+        <td>72</td>
+      </tr>
+      <tr>
+        <th>9</th>
+        <td><a href="http://en.wikipedia.org/wiki/Singin%27_in_the_Rain" data-rel="external">Singin' in the Rain</a></td>
+        <td>1952</td>
+        <td>89%</td>
+        <td>85</td>
+      </tr>
+      <tr>
+        <th>10</th>
+        <td class="title"><a href="http://en.wikipedia.org/wiki/Inception" data-rel="external">Inception</a></td>
+        <td>2010</td>
+        <td>84%</td>
+        <td>78</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+  
+  </div>
+  </body>
+</html>
+
+
